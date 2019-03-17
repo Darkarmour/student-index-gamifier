@@ -12,29 +12,37 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-form-field class="width margin-search">
-      <input matInput placeholder="Search indices" (keyup)="searchChanged($event)">
-    </mat-form-field>
-    <mat-card *ngFor="let index of indices | searchPipe: searchTerm">
-      <mat-card-title>
-        {{index.name}}
-      </mat-card-title>
-      <mat-card-subtitle>
-        {{index.description}}
-      </mat-card-subtitle>
-      <mat-list *ngFor="let addedSection of index.addedSections">
-        <h2>{{addedSection.name}}
-        <input type="number" matInput placeholder="Points" style="float: right;width: 10%;color: #607d8b">
-        </h2>
-        <mat-list-item *ngFor="let behaviour of addedSection.behaviours">
-          <p>{{behaviour.name}}</p>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-      </mat-list>
-      <mat-card-actions align="end">
-        <button mat-button color="warn" (click)="deleteIndex(index.id)">Delete</button>
-      </mat-card-actions>
-    </mat-card>
+    <div *ngIf="indices.length > 0">
+      <mat-form-field class="width margin-search">
+        <input matInput placeholder="Search indices" (keyup)="searchChanged($event)">
+      </mat-form-field>
+      <mat-card *ngFor="let index of indices | searchPipe: searchTerm">
+        <mat-card-title>
+          {{index.name}}
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{index.description}}
+        </mat-card-subtitle>
+        <mat-list *ngFor="let addedSection of index.addedSections | mapToIterable">
+          <h2>{{addedSection.section.name}}
+            <input [value]="addedSection.point" type="number" matInput placeholder="Points"
+              style="float: right;width: 10%;color: #607d8b">
+          </h2>
+          <mat-list-item *ngFor="let behaviour of addedSection.section.behaviours | mapToIterable">
+            <p>{{behaviour.name}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+        <mat-card-actions align="end">
+          <button mat-button color="warn" (click)="deleteIndex(index.id)">Delete</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div *ngIf="indices.length === 0">
+      <p style="text-align:center">
+        No indices to show
+      </p>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

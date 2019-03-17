@@ -18,42 +18,6 @@ export class SetupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.indices.push({
-      id: '1',
-      name: 'Social Index',
-      description: 'Trend on the social interactivity of the students',
-      addedSections: [{
-        id: '11',
-        name: 'Conduct',
-        point: 100,
-        behaviours: [{
-          id: '111',
-          name: 'Feedback',
-          point: 40
-        },
-        {
-          id: '112',
-          name: 'Absenteeism',
-          point: 60
-        },
-        ]
-      }, {
-        id: '12',
-        name: 'Co-Curricular',
-        point: 200,
-        behaviours: [{
-          id: '121',
-          name: 'Event participation',
-          point: 120
-        },
-        {
-          id: '122',
-          name: 'Club Membership',
-          point: 80
-        }]
-      }]
-    });
-    window.localStorage.setItem('indices', JSON.stringify(this.indices));
   }
 
   deleteIndex(indexId: string) {
@@ -83,19 +47,24 @@ export interface Index {
   id: string,
   name: string,
   description: string,
-  addedSections: Array<Section>
+  addedSections: { [id: string]: {
+    section: Section,
+    point: string 
+  }
+}
 }
 
 export interface Section {
   id: string
   name: string,
-  behaviours?: Array<Behaviour>
-  point: number
+  addedBehaviours: { [id: string]: {
+    behaviour: Behaviour,
+    point: string
+  }}
 }
 
 export interface Behaviour { //NOTE These are predefined
   id: string,
   name: string,
   properties?: Array<any>,
-  point?: number
 }

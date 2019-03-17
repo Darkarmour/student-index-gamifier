@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SetupComponent } from './setup/setup.component';
 import { SearchPipePipe } from './search-pipe.pipe';
 import { AddIndexComponent } from './add-index/add-index.component';
+import { MapToIterablePipe } from './map-to-iterable.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AddIndexComponent } from './add-index/add-index.component';
     DashboardComponent,
     SetupComponent,
     SearchPipePipe,
-    AddIndexComponent
+    AddIndexComponent,
+    MapToIterablePipe
   ],
   entryComponents: [
     AddIndexComponent

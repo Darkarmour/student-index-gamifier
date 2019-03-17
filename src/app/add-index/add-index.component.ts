@@ -12,12 +12,20 @@ export class AddIndexComponent implements OnInit {
 
   sections: Array<Section> = [];
   behaviours: Array<Behaviour> = [];
-  behaviourName: string;
+  behaviourName: string = '';
+  sectionName: string = '';
+  addedBehaviours: {
+    [id: string]: {
+      behaviour: Behaviour,
+      point: string
+    }
+  } = {};
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private snackBar: MatSnackBar) {
     this.sections = JSON.parse(window.localStorage.getItem('sections')) || [];
     this.behaviours = JSON.parse(window.localStorage.getItem('behaviours')) || [];
+    this.initAddedBehaviours();
   }
 
   ngOnInit() {
@@ -28,7 +36,25 @@ export class AddIndexComponent implements OnInit {
   }
 
   addSection() {
+    this.sections.push({
+      id: '1' + this.sectionName,
+      name: this.sectionName,
+      addedBehaviours: this.addedBehaviours
+    });
+    window.localStorage.setItem('behaviours', JSON.stringify(this.behaviours));
     this.openSnackBar('Section added successfully', 'Undo');
+    this.sectionName = '';
+    this.initAddedBehaviours();
+  }
+
+  initAddedBehaviours() {
+    this.addedBehaviours = {};
+    for (let behaviour of this.behaviours) {
+      this.addedBehaviours[behaviour.id] = {
+        behaviour: behaviour,
+        point: '0'
+      }
+    }
   }
 
   addBehaviour() {
@@ -43,6 +69,17 @@ export class AddIndexComponent implements OnInit {
 
   behaviourNameChanged(event) {
     this.behaviourName = event.target.value;
+  }
+
+  sectionNameChanged(event) {
+    this.sectionName = event.target.value;
+  }
+
+  behaviourPointChanged(event, addedBehaviour: {
+    behaviour: Behaviour,
+    point: number
+  }) {
+    addedBehaviour.point = event.target.value;
   }
 
   openSnackBar(message: string, action: string) {

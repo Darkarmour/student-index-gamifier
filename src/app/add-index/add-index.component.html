@@ -23,24 +23,26 @@
   <mat-tab label="Section">
     <div class="form-container">
       <mat-form-field>
-        <input matInput placeholder="Name">
+        <input [value]="sectionName" matInput placeholder="Name" (keyup)="sectionNameChanged($event)">
       </mat-form-field>
       <mat-list>
-        {{behaviours.length === 0 ? 'No behaviours to select': 'Behaviours'}}
-        <div *ngFor="let behaviour of behaviours">
+        {{(addedBehaviours | mapToIterable).length === 0 ? 'No behaviours to select': 'Behaviours'}}
+        <div *ngFor="let addedBehaviour of addedBehaviours | mapToIterable">
           <mat-list-item>
-              {{behaviour.name}}
+            {{addedBehaviour.behaviour.name}}
           </mat-list-item>
-          <input type="number" matInput placeholder="Points" style="margin-left:16px">
+          <input [value]="addedBehaviour.point" type="number" matInput placeholder="Points" (keyup)="behaviourPointChanged($event, addedBehaviour)"
+            style="margin-left:16px">
         </div>
       </mat-list>
     </div>
-    <button *ngIf="behaviours.length > 0" mat-button (click)="addSection()" style="float:right;color:#607d8b">Add Section</button>
+    <button *ngIf="behaviours.length > 0" mat-button (click)="addSection()" style="float:right;color:#607d8b">Add
+      Section</button>
   </mat-tab>
   <mat-tab label="Behaviour">
     <div class="form-container">
       <mat-form-field>
-        <input matInput placeholder="Name" (keyup)="behaviourNameChanged($event)">
+        <input [value]="behaviourName" matInput placeholder="Name" (keyup)="behaviourNameChanged($event)">
       </mat-form-field>
     </div>
     <button mat-button (click)="addBehaviour()" style="float:right;color:#607d8b">Add Behaviour</button>
