@@ -37,7 +37,7 @@ export class SetupComponent implements OnInit {
       height: '50%'
     });
     dialogRef.afterClosed().subscribe(data => {
-      this.indices = JSON.parse(window.localStorage.getItem('indices'))
+      this.indices = JSON.parse(window.localStorage.getItem('indices')) || [];
       console.log('The dialog was closed', data);
     });
   }
