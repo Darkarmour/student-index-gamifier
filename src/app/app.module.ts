@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSidenavModule, MatToolbarModule, MatListModule, MatTableModule, MatButtonToggleModule, MatCardModule, MatButtonModule, MatIconModule, MatGridListModule, MatInputModule, MatDialogModule, MatTabsModule, MatFormFieldModule, MatOptionModule, MatSelectModule } from '@angular/material';
+import { MatSidenavModule, MatToolbarModule, MatListModule, MatTableModule, MatButtonToggleModule, MatCardModule, MatButtonModule, MatIconModule, MatGridListModule, MatInputModule, MatDialogModule, MatTabsModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatSnackBarModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -40,7 +40,8 @@ import { AddIndexComponent } from './add-index/add-index.component';
     MatTabsModule,
     MatFormFieldModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

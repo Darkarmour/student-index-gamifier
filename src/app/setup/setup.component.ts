@@ -83,13 +83,13 @@ export interface Index {
   id: string,
   name: string,
   description: string,
-  addedSections: Array<Section>
+  addedSections?: Array<Section>
 }
 
 export interface Section {
   id: string
   name: string,
-  behaviours: Array<Behaviour>
+  behaviours?: Array<Behaviour>
   point: number
 }
 
