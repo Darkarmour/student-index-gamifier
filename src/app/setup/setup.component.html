@@ -12,7 +12,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div *ngIf="indices.length > 0">
+    <div *ngIf="indices && indices.length > 0">
       <mat-form-field class="width margin-search">
         <input matInput placeholder="Search indices" (keyup)="searchChanged($event)">
       </mat-form-field>
