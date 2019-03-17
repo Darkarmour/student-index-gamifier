@@ -26,4 +26,12 @@ table {
 .margin-search {
   margin: 16px 0px 0px 16px;
 }
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+.form-container > * {
+  width: 100%;
+}
+
 

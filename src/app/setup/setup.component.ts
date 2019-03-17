@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { AddIndexComponent } from '../add-index/add-index.component';
+
 @Component({
   selector: 'app-setup',
   templateUrl: './setup.component.html',
@@ -9,8 +12,10 @@ import { Component, OnInit } from '@angular/core';
 export class SetupComponent implements OnInit {
 
   indices: Array<Index> = [];
-  searchTerm: string; ß
-  constructor() { }
+  searchTerm: string;
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.indices.push({
@@ -56,6 +61,16 @@ export class SetupComponent implements OnInit {
     if (indexToBeDeletable)
       this.indices.splice(indexToBeDeletable, 1);
     window.localStorage.setItem('indices', JSON.stringify(this.indices));
+  }
+
+  add() {
+    const dialogRef = this.dialog.open(AddIndexComponent, {
+      width: '50%',
+      height: '50%'
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      console.log('The dialog was closed', data);
+    });
   }
 
   searchChanged(event) {
