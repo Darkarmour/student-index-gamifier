@@ -24,12 +24,13 @@
           {{index.description}}
         </mat-card-subtitle>
         <mat-list *ngFor="let addedSection of index.addedSections | mapToIterable">
-          <h2>{{addedSection.section.name}}
+          <h4>{{addedSection.section.name}}
             <input [value]="addedSection.point" type="number" matInput placeholder="Points"
               style="float: right;width: 10%;color: #607d8b">
-          </h2>
-          <mat-list-item *ngFor="let behaviour of addedSection.section.behaviours | mapToIterable">
-            <p>{{behaviour.name}}</p>
+          </h4>
+          <mat-list-item *ngFor="let addedBehaviour of addedSection.section.addedBehaviours | mapToIterable">
+            <p>{{addedBehaviour.behaviour.name}} - {{addedBehaviour.point}}
+            </p>
           </mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>
