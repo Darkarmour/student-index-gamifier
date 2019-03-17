@@ -23,7 +23,9 @@
         {{index.description}}
       </mat-card-subtitle>
       <mat-list *ngFor="let addedSection of index.addedSections">
-        <h2>{{addedSection.name}}</h2>
+        <h2>{{addedSection.name}}
+        <input type="number" matInput placeholder="Points" class="section-number">
+        </h2>
         <mat-list-item *ngFor="let behaviour of addedSection.behaviours">
           <p>{{behaviour.name}}</p>
         </mat-list-item>

@@ -33,5 +33,10 @@ table {
 .form-container > * {
   width: 100%;
 }
+.section-number {
+  float: right;
+  width: 10%;
+  color: #607d8b
+}
 
 
