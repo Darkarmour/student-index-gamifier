@@ -46,7 +46,7 @@ export class SetupComponent implements OnInit {
 export interface Index {
   id: string,
   name: string,
-  description: string,
+  description?: string,
   addedSections: { [id: string]: {
     section: Section,
     point: string 

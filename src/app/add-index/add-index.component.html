@@ -2,18 +2,18 @@
   <mat-tab label="Index">
     <div class="form-container">
       <mat-form-field>
-        <input matInput placeholder="Name">
+        <input [value]="indexName" matInput placeholder="Name" (keyup)="indexNameChanged($event)">
       </mat-form-field>
       <mat-form-field>
         <textarea matInput placeholder="Description"></textarea>
       </mat-form-field>
       <mat-list>
-        {{sections.length === 0 ? 'No sections to select': 'Sections'}}
-        <div *ngFor="let section of sections">
+        {{(addedSections | mapToIterable).length === 0 ? 'No sections to select': 'Sections'}}
+        <div *ngFor="let addedSection of addedSections | mapToIterable">
           <mat-list-item>
-            {{section.name}}
+            {{addedSection.section.name}}
           </mat-list-item>
-          <input type="number" matInput placeholder="Points" style="margin-left:16px">
+          <input [value]="addedSection.point" type="number" matInput placeholder="Points" style="margin-left:16px" (keyup)="sectionPointChanged($event, addedSection)">
         </div>
       </mat-list>
     </div>
