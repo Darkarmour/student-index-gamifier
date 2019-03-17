@@ -1,0 +1,39 @@
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Index">
+    <div class="form-container">
+      <mat-form-field>
+        <input matInput placeholder="Name">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Description"></textarea>
+      </mat-form-field>
+      <mat-list>
+        {{sections.length === 0 ? 'No sections to select': 'Sections'}}
+        <div *ngFor="let section of sections">
+          <mat-list-item>
+            {{section.name}}
+          </mat-list-item>
+          <input type="number" matInput placeholder="Points" style="margin-left:16px">
+        </div>
+      </mat-list>
+    </div>
+    <button *ngIf="sections.length > 0" mat-button (click)="addIndex()" style="float:right;color:#607d8b">Add Index</button>
+  </mat-tab>
+  <mat-tab label="Section">
+    <div class="form-container">
+      <mat-form-field>
+        <input matInput placeholder="Name">
+      </mat-form-field>
+      <mat-list>
+        Bahaviours
+        <div *ngFor="let behaviour of behaviours">
+          <mat-list-item>
+            {{behaviour.name}}
+          </mat-list-item>
+          <input type="number" matInput placeholder="Points" style="margin-left:16px">
+        </div>
+      </mat-list>
+    </div>
+    <button mat-button (click)="addSection()" style="float:right;color:#607d8b">Add Section</button>
+  </mat-tab>
+</mat-tab-group>

@@ -2,7 +2,7 @@
   <span>Student Index Gamifier</span>
   <!-- This fills the remaining space of the current row -->
   <span class="toolbar_flex"></span>
-  <span>Sign Out</span>
+  <a (click)="add()">Add</a>
 </mat-toolbar>
 <mat-sidenav-container class="side-nav_container">
   <mat-sidenav mode="side" opened>
@@ -12,7 +12,10 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-card *ngFor="let index of indices">
+    <mat-form-field class="width margin-search">
+      <input matInput placeholder="Search indices" (keyup)="searchChanged($event)">
+    </mat-form-field>
+    <mat-card *ngFor="let index of indices | searchPipe: searchTerm">
       <mat-card-title>
         {{index.name}}
       </mat-card-title>
@@ -20,14 +23,16 @@
         {{index.description}}
       </mat-card-subtitle>
       <mat-list *ngFor="let addedSection of index.addedSections">
-        <h2>{{addedSection.name}}</h2>
+        <h2>{{addedSection.name}}
+        <input type="number" matInput placeholder="Points" style="float: right;width: 10%;color: #607d8b">
+        </h2>
         <mat-list-item *ngFor="let behaviour of addedSection.behaviours">
           <p>{{behaviour.name}}</p>
         </mat-list-item>
         <mat-divider></mat-divider>
       </mat-list>
       <mat-card-actions align="end">
-        <button mat-button color="warn">Delete</button>
+        <button mat-button color="warn" (click)="deleteIndex(index.id)">Delete</button>
       </mat-card-actions>
     </mat-card>
   </mat-sidenav-content>
