@@ -11,6 +11,7 @@ import { SetupComponent } from './setup/setup.component';
 import { SearchPipePipe } from './search-pipe.pipe';
 import { AddIndexComponent } from './add-index/add-index.component';
 import { MapToIterablePipe } from './map-to-iterable.pipe';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -19,10 +20,12 @@ import { MapToIterablePipe } from './map-to-iterable.pipe';
     SetupComponent,
     SearchPipePipe,
     AddIndexComponent,
-    MapToIterablePipe
+    MapToIterablePipe,
+    ModalComponent
   ],
   entryComponents: [
-    AddIndexComponent
+    AddIndexComponent,
+    ModalComponent
   ],
   imports: [
     AppRoutingModule,
