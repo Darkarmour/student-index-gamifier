@@ -12,24 +12,17 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <!-- //TODO Multiple cards for Difference Indices -->
-    <mat-card>
+    <mat-card *ngFor="let index of indices">
       <mat-card-title>
-        Student Personality Index
+        {{index.name}}
       </mat-card-title>
       <mat-card-subtitle>
-        Analyse the personality index of a student
+        {{index.description}}
       </mat-card-subtitle>
-      <!-- //MULTIPLE LIST for different Sections -->
-      <mat-list>
-        <h2>Academic</h2>
-        <!-- Multiple for different behaviours -->
-        <mat-list-item>
-          <h3>CGPA</h3>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h3>CGPA</h3>
+      <mat-list *ngFor="let addedSection of index.addedSections">
+        <h2>{{addedSection.name}}</h2>
+        <mat-list-item *ngFor="let behaviour of addedSection.behaviours">
+          <p>{{behaviour.name}}</p>
         </mat-list-item>
         <mat-divider></mat-divider>
       </mat-list>
