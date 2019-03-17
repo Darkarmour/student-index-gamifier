@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js'
+import { Chart } from 'chart.js';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ModalComponent } from '../modal/modal.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -7,12 +10,14 @@ import { Chart } from 'chart.js'
 })
 
 export class DashboardComponent implements OnInit {
-  constructor() { }
+  constructor(
+    public dialog: MatDialog
+  ) {
+  }
   LineChart = [];
   BarChart = [];
   PieChart = [];
-  indices = [1,2];
-  
+  indices = [1, 2];
 
   ngOnInit() {
     // Line chart:
@@ -26,10 +31,10 @@ export class DashboardComponent implements OnInit {
           fill: true,
           lineTension: 0.2,
           borderWidth: 2,
-          borderColor:"rgba(96,125,139)",
+          borderColor: "rgba(96,125,139)",
           backgroundColor: [
             "rgb(38,198,218)"
-        ]
+          ]
         }]
       },
       options: {
@@ -52,26 +57,26 @@ export class DashboardComponent implements OnInit {
         labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [{
           label: 'Boys',
-          data: [ 10, 15, 16, 19, 3, 1, 9,9, 7, 3, 5, 2,],
+          data: [10, 15, 16, 19, 3, 1, 9, 9, 7, 3, 5, 2,],
           fill: false,
           lineTension: 0.2,
-          borderWidth: 2,
-          borderColor:"rgba(96,125,139)",
+          borderWidth: 3,
+          borderColor: "rgb(51, 102, 255)",
           backgroundColor: [
-            "rgba(96,125,139)"
-        ]
+            "rgb(51, 102, 255)"
+          ]
         },
         {
           label: 'Girls',
-          data: [15,14,13,12,1,8,9,25,28,5,3,8],
+          data: [15, 14, 13, 12, 1, 8, 9, 25, 28, 5, 3, 8],
           fill: false,
           lineTension: 0.2,
-          borderWidth: 2,
-          borderColor:"red",
+          borderWidth: 3,
+          borderColor: "rgb(255, 51, 204)",
           backgroundColor: [
-            "red"]
+            "rgb(255, 51, 204)"]
         }
-      ]
+        ]
       },
       options: {
         title: {
@@ -92,9 +97,18 @@ export class DashboardComponent implements OnInit {
   }
 
   getCanvasId(index: number): string {
-    console.log("index"+index)
-    return index+'lineChart';
+    console.log("index" + index)
+    return index + 'lineChart';
   }
 
+  myFunc() {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '80%',
+      height: '60%'
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      console.log('The dialog was closed', data);
+    });
+  }
 
 }
