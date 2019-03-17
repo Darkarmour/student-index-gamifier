@@ -12,7 +12,10 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-card *ngFor="let index of indices">
+    <mat-form-field class="width margin-search">
+      <input matInput placeholder="Search indices" (keyup)="searchChanged($event)">
+    </mat-form-field>
+    <mat-card *ngFor="let index of indices | searchPipe: searchTerm">
       <mat-card-title>
         {{index.name}}
       </mat-card-title>
@@ -27,7 +30,7 @@
         <mat-divider></mat-divider>
       </mat-list>
       <mat-card-actions align="end">
-        <button mat-button color="warn">Delete</button>
+        <button mat-button color="warn" (click)="deleteIndex(index.id)">Delete</button>
       </mat-card-actions>
     </mat-card>
   </mat-sidenav-content>
