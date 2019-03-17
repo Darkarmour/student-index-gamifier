@@ -8,7 +8,7 @@
         <textarea matInput placeholder="Description"></textarea>
       </mat-form-field>
       <mat-list>
-        Sections
+        {{sections.length === 0 ? 'No sections to select': 'Sections'}}
         <div *ngFor="let section of sections">
           <mat-list-item>
             {{section.name}}
@@ -17,7 +17,7 @@
         </div>
       </mat-list>
     </div>
-    <button mat-button (click)="addIndex()" style="float:right;color:#607d8b">Add Index</button>
+    <button *ngIf="sections.length > 0" mat-button (click)="addIndex()" style="float:right;color:#607d8b">Add Index</button>
   </mat-tab>
   <mat-tab label="Section">
     <div class="form-container">

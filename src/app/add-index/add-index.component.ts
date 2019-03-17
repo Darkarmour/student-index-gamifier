@@ -15,24 +15,8 @@ export class AddIndexComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private snackBar: MatSnackBar) {
-    this.sections = JSON.parse(window.localStorage.getItem('sections'));
-    this.behaviours = JSON.parse(window.localStorage.getItem('behaviours'));
-    if (!this.sections)
-      this.initSections();
-    if (!this.behaviours)
-      this.initBehaviours();
-  }
-
-  initSections() {
-    this.sections = [{
-      id: '11',
-      name: 'Conduct',
-      point: 0
-    }, {
-      id: '12',
-      name: 'Co-Curricular',
-      point: 200
-    }]
+    this.sections = JSON.parse(window.localStorage.getItem('sections')) || [];
+    this.initBehaviours();
   }
 
   initBehaviours() {
