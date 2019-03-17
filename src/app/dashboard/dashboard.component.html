@@ -12,12 +12,17 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <canvas (click)="myFunc()" id="1lineChart"
-      style="position:relative; padding-left:120px;max-height: 500px !important;max-width: 1000px !important;">
-    </canvas>
-    <canvas id="2lineChart"
-      style="position:relative; padding-left:120px;max-height: 500px !important;max-width: 1000px !important;">
-    </canvas>
+    <mat-card class="example-card" style="color: #9e9e9e;">
+      <canvas (click)="myFunc()" id="1lineChart"
+        style="position:relative; padding-left:120px;max-height: 500px !important;max-width: 1000px !important;">
+      </canvas>
+    </mat-card>
+    <h6></h6>
+    <mat-card class="example-card">
+      <canvas id="2lineChart"
+        style="position:relative; padding-left:120px;max-height: 500px !important;max-width: 1000px !important;">
+      </canvas>
+    </mat-card>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
