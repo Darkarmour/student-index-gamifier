@@ -97,5 +97,5 @@ export interface Behaviour { //NOTE These are predefined
   id: string,
   name: string,
   properties?: Array<any>,
-  point: number
+  point?: number
 }

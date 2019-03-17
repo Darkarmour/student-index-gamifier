@@ -12,24 +12,12 @@ export class AddIndexComponent implements OnInit {
 
   sections: Array<Section> = [];
   behaviours: Array<Behaviour> = [];
+  behaviourName: string;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private snackBar: MatSnackBar) {
     this.sections = JSON.parse(window.localStorage.getItem('sections')) || [];
-    this.initBehaviours();
-  }
-
-  initBehaviours() {
-    this.behaviours = [{
-      id: '111',
-      name: 'Feedback',
-      point: 40
-    },
-    {
-      id: '112',
-      name: 'Absenteeism',
-      point: 60
-    }]
+    this.behaviours = JSON.parse(window.localStorage.getItem('behaviours')) || [];
   }
 
   ngOnInit() {
@@ -41,6 +29,20 @@ export class AddIndexComponent implements OnInit {
 
   addSection() {
     this.openSnackBar('Section added successfully', 'Undo');
+  }
+
+  addBehaviour() {
+    this.behaviours.push({
+      id: '0' + this.behaviourName,
+      name: this.behaviourName,
+    });
+    window.localStorage.setItem('behaviours', JSON.stringify(this.behaviours));
+    this.openSnackBar('Behaviour added successfully', 'Undo');
+    this.behaviourName = '';
+  }
+
+  behaviourNameChanged(event) {
+    this.behaviourName = event.target.value;
   }
 
   openSnackBar(message: string, action: string) {

@@ -41,7 +41,8 @@ import { AddIndexComponent } from './add-index/add-index.component';
     MatFormFieldModule,
     MatOptionModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

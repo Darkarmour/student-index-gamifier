@@ -17,7 +17,8 @@
         </div>
       </mat-list>
     </div>
-    <button *ngIf="sections.length > 0" mat-button (click)="addIndex()" style="float:right;color:#607d8b">Add Index</button>
+    <button *ngIf="sections.length > 0" mat-button (click)="addIndex()" style="float:right;color:#607d8b">Add
+      Index</button>
   </mat-tab>
   <mat-tab label="Section">
     <div class="form-container">
@@ -25,15 +26,23 @@
         <input matInput placeholder="Name">
       </mat-form-field>
       <mat-list>
-        Bahaviours
+        {{behaviours.length === 0 ? 'No behaviours to select': 'Behaviours'}}
         <div *ngFor="let behaviour of behaviours">
           <mat-list-item>
-            {{behaviour.name}}
+              {{behaviour.name}}
           </mat-list-item>
           <input type="number" matInput placeholder="Points" style="margin-left:16px">
         </div>
       </mat-list>
     </div>
-    <button mat-button (click)="addSection()" style="float:right;color:#607d8b">Add Section</button>
+    <button *ngIf="behaviours.length > 0" mat-button (click)="addSection()" style="float:right;color:#607d8b">Add Section</button>
+  </mat-tab>
+  <mat-tab label="Behaviour">
+    <div class="form-container">
+      <mat-form-field>
+        <input matInput placeholder="Name" (keyup)="behaviourNameChanged($event)">
+      </mat-form-field>
+    </div>
+    <button mat-button (click)="addBehaviour()" style="float:right;color:#607d8b">Add Behaviour</button>
   </mat-tab>
 </mat-tab-group>
